@@ -36,7 +36,7 @@ if(isset($_GET['id'])){
         
     }else{
         header('HTTP/1.0 404 NOT FOUND');	
-            echo '<h3><b>ERROR 404 Not Found</b></h3><br/>';	
+            echo '<h1>ERROR 404 Not Found</h1><br/>';	
     }
 }elseif(empty($_GET)){
      all($news);
