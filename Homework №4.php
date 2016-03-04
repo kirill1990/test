@@ -18,7 +18,6 @@ diskont = diskont'.  mt_rand(0, 2).';
 количество заказано = '.  mt_rand(1, 10).';
 осталось на складе = '.  mt_rand(0, 10).';
 diskont = diskont'.  mt_rand(0, 2).';
-
 ';
 $bd=  parse_ini_string($ini_string, true);
 #print_r($bd);
@@ -26,7 +25,6 @@ $bd=  parse_ini_string($ini_string, true);
 $diskont = array (); // переменная-скидка
 $sum = array(); //переменная-счетчик
 $notice = array(); //уведомления
-
  //условие для велика
 //   if ($bd['игрушка детская велосипед']['осталось на складе'] && 
 //        $bd['игрушка детская велосипед']['осталось на складе']>=3){
@@ -34,7 +32,6 @@ $notice = array(); //уведомления
 //    $notice[] = 'Вы заказали '.$bd['игрушка детская велосипед']['количество заказано'].
 //        'шт. "игрушка детская велосипед", автоматически Вы получаете скидку 30%!';
 //        }
-
 function ParseCart($product,$param){
     global $sum;
     global $notice;
@@ -58,14 +55,16 @@ function ParseCart($product,$param){
     //делаем условие для скидки
     
     if ($param['diskont'] == 'diskont1') {
-        $param['diskont'] = "10%";
-    } 
-    elseif ($param['diskont'] == 'diskont2') {
-    $param['diskont'] = "20%";}
-      
-    else {
-        $param['diskont'] = "0%";
-    }
+$param['diskont'] = "10%";
+}
+elseif ($param['diskont'] == 'diskont2') {
+$param['diskont'] = "20%";}
+else {
+$param['diskont'] = "0%";
+}
+
+if($param['осталось на складе']>=3 && $param['количество заказано']>=3){
+$param['diskont'] = "30%";}
     
     
     
@@ -119,7 +118,6 @@ function ParseCart($product,$param){
 <?php
  
     
-
 //Приводим к удобочитаемому виду
 echo '<p>';
 foreach ($bd as $key => $value) {
@@ -132,14 +130,12 @@ foreach ($bd as $key => $value) {
     
     
 }
-
 if ($bd['игрушка детская велосипед']['осталось на складе'] && 
-        $bd['игрушка детская велосипед']['осталось на складе']>=3){
+        $bd['игрушка детская велосипед']['количество заказано']>=3){
     $bd['игрушка детская велосипед']['diskont'] = "30%";
     $notice[] = 'Вы заказали '.$bd['игрушка детская велосипед']['количество заказано'].
         'шт. "игрушка детская велосипед", автоматически Вы получаете скидку 30%!';
         }
-
 ?>
     
 
